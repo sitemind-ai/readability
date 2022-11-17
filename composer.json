@@ -41,5 +41,8 @@
     },
     "suggest": {
         "monolog/monolog": "Allow logging debug information"
+    },
+    "config": {
+        "platform-check": false
     }
 }
