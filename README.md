@@ -43,6 +43,8 @@ First you have to require the library using composer:
 Then, create a Readability class and pass a Configuration class, feed the `parse()` function with your HTML and echo the variable:
 
 ```php 
+<?php
+require __DIR__ . '/vendor/autoload.php';
 use fivefilters\Readability\Readability;
 use fivefilters\Readability\Configuration;
 use fivefilters\Readability\ParseException;
