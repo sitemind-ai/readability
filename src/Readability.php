@@ -204,7 +204,7 @@ class Readability
              * finding the -right- content.
              */
 
-            $length = mb_strlen(preg_replace(NodeUtility::$regexps['onlyWhitespace'], '', $result->textContent));
+            $length = !$result ? 0 : mb_strlen(preg_replace(NodeUtility::$regexps['onlyWhitespace'], '', $result->textContent));
 
             $this->logger->info(sprintf('[Parsing] Article parsed. Amount of words: %s. Current threshold is: %s', $length, $this->configuration->getCharThreshold()));
 
@@ -1503,7 +1503,7 @@ class Readability
         $siblingScoreThreshold = max(10, $topCandidate->contentScore * 0.2);
         // Keep potential top candidate's parent node to try to get text direction of it later.
         $parentOfTopCandidate = $topCandidate->parentNode;
-        $siblings = $parentOfTopCandidate->childNodes;
+        $siblings = $parentOfTopCandidate->childNodes ?? null;
 
         $hasContent = false;
 
@@ -1511,7 +1511,7 @@ class Readability
 
         /* @var DOMElement $sibling */
         // Can't foreach here because down there we might change the tag name and that causes the foreach to skip items
-        for ($i = 0; $i < $siblings->length; $i++) {
+        for ($i = 0; $i < $siblings->length ?? 0; $i++) {
             $sibling = $siblings[$i];
             $append = false;
 
