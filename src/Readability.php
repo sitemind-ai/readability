@@ -1565,9 +1565,8 @@ class Readability
             }
         }
 
-        $articleContent = $this->prepArticle($articleContent);
-
         if ($hasContent) {
+            $articleContent = $this->prepArticle($articleContent);
             // Find out text direction from ancestors of final top candidate.
             $ancestors = array_merge([$parentOfTopCandidate, $topCandidate], $parentOfTopCandidate->getNodeAncestors());
             foreach ($ancestors as $ancestor) {
